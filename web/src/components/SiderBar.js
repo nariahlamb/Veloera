@@ -30,6 +30,7 @@ import {
   IconPriceTag,
   IconSetting,
   IconUser,
+  IconChartLine, // Using this for Usage Report
 } from '@douyinfe/semi-icons';
 import {
   Avatar,
@@ -91,6 +92,7 @@ const routerMap = {
   task: '/task',
   playground: '/playground',
   personal: '/personal',
+  'usage-report': '/usage-report', // Added usage report
 };
 
 const SiderBar = () => {
@@ -128,6 +130,7 @@ const SiderBar = () => {
       'task',
       'playground',
       'personal',
+      'usage-report', // Added usage report
     ];
     // 添加聊天项的keys
     for (let i = 0; i < chatItems.length; i++) {
@@ -241,6 +244,13 @@ const SiderBar = () => {
         itemKey: 'setting',
         to: '/setting',
         icon: <IconSetting />,
+      },
+      {
+        text: t('用量报告'), // Usage Report
+        itemKey: 'usage-report',
+        to: '/usage-report',
+        icon: <IconChartLine />, // Using IconChartLine
+        className: isAdmin() ? '' : 'tableHiddle',
       },
     ],
     [isAdmin(), t],

@@ -141,6 +141,14 @@ func SetApiRouter(router *gin.Engine) {
 		logRoute.GET("/self", middleware.UserAuth(), controller.GetUserLogs)
 		logRoute.GET("/self/search", middleware.UserAuth(), controller.SearchUserLogs)
 
+		reportRoute := apiRouter.Group("/reports")
+		reportRoute.Use(middleware.AdminAuth())
+		{
+			reportRoute.GET("/", controller.GetReports)
+			reportRoute.POST("/", controller.GenerateReport)
+			reportRoute.GET("/:id", controller.GetReportByID)
+		}
+
 		dataRoute := apiRouter.Group("/data")
 		dataRoute.GET("/", middleware.AdminAuth(), controller.GetAllQuotaDates)
 		dataRoute.GET("/self", middleware.UserAuth(), controller.GetUserQuotaDates)

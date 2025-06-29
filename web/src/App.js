@@ -28,6 +28,11 @@ import PersonalSetting from './components/PersonalSetting.js';
 import Setup from './pages/Setup/index.js';
 import SetupCheck from './components/SetupCheck';
 
+// Usage Report Pages
+const UsageReportPage = lazy(() => import('./pages/UsageReport/index'));
+const UsageReportForm = lazy(() => import('./pages/UsageReport/UsageReportForm'));
+const UsageReportDetail = lazy(() => import('./pages/UsageReport/UsageReportDetail'));
+
 const Home = lazy(() => import('./pages/Home'));
 const Detail = lazy(() => import('./pages/Detail'));
 const About = lazy(() => import('./pages/About'));
@@ -281,6 +286,36 @@ function App() {
             <PrivateRoute>
               <Suspense fallback={<Loading></Loading>} key={location.pathname}>
                 <Chat2Link />
+              </Suspense>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/usage-report'
+          element={
+            <PrivateRoute>
+              <Suspense fallback={<Loading />}>
+                <UsageReportPage />
+              </Suspense>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/usage-report/new'
+          element={
+            <PrivateRoute>
+              <Suspense fallback={<Loading />}>
+                <UsageReportForm />
+              </Suspense>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/usage-report/detail/:id'
+          element={
+            <PrivateRoute>
+              <Suspense fallback={<Loading />}>
+                <UsageReportDetail />
               </Suspense>
             </PrivateRoute>
           }
