@@ -1,0 +1,2 @@
+# 部署脚本依赖
+huggingface_hub>=0.20.0
